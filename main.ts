@@ -18,8 +18,13 @@ radio.onReceivedMessage(RadioMessage.branco, function () {
         // Execução de girar em torno do eixo para se alinhar a tragetória que estará na forma de uma linha preta.
         servos.P1.run(40)
         servos.P2.run(40)
-        // String para que possamos entender o que o robô está fazendo nas execuções da programação.
-        basic.showString("1")
+        basic.showLeds(`
+            # # . . .
+            # # . . .
+            # # . . .
+            # # . . .
+            # # . . .
+            `)
         basic.clearScreen()
     }
     // Detectação de qual cor o sensor RGB esta vendo no 3. Nesse caso, vai detectar a cor branca. Com o resultado final de branco no 4 e branco no 3.
@@ -30,6 +35,24 @@ radio.onReceivedMessage(RadioMessage.branco, function () {
         // String para que possamos entender o que o robô está fazendo nas execuções da programação.
         basic.showString("b")
         basic.clearScreen()
+    }
+    // Detectação de qual cor o sensor RGB esta vendo no 3. Nesse caso, vai detectar a cor branca. Com o resultado final de branco no 4 e branco no 3.
+    if (Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueR) >= 36 && (Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueG) >= 85 && Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueB) == 255)) {
+        basic.pause(100)
+        // Preto e verde
+        if (Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueR) < 57 && (Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueG) == 255 && Module_World_Color.GetRGBValue(Module_World_Color.enGetRGB.GetValueB) < 38)) {
+            // Execução de girar em torno do eixo para se alinhar a tragetória que estará na forma de uma linha preta.
+            servos.P1.run(40)
+            servos.P2.run(40)
+            basic.showLeds(`
+                . # # . .
+                . # # . .
+                . # # . .
+                . # # . .
+                . # # . .
+                `)
+            basic.clearScreen()
+        }
     }
 })
 // Significa que no 4, o sensor RGB esta detectando a cor preta a partir de parâmetros que definimos.
